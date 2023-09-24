@@ -54,12 +54,19 @@ public class UrlShortenerTest
 
         var model = new UrlModel { LongUrl = "https://www.validurl.com" };
         
-        var result = controller.ShortenUrl(model);
+        var result = controller.ShortenUrl(model) as OkObjectResult;
+
+        if (result == null)
+        {
+            return;
+        }
+        
         Assert.NotNull(result);
+        Assert.StartsWith("https://example.co/", result.Value as string);
     }
 
     [Fact]
-    public void ShortenUrl_ShouldReturnDifferentResults_ForDifferentUrls()
+    public void ShortenUrl_ShouldReturnDifferentResults()
     {
         var mockBaseUrlSection = new Mock<IConfigurationSection>();
         mockBaseUrlSection.SetupGet(m => m.Value).Returns("https://example.co/");
@@ -75,23 +82,14 @@ public class UrlShortenerTest
         var model1 = new UrlModel { LongUrl = "https://www.first.com" };
         var model2 = new UrlModel { LongUrl = "https://www.second.com" };
 
-        var result1 = controller.ShortenUrl(model1);
-        var result2 = controller.ShortenUrl(model2);
+        var result1 = controller.ShortenUrl(model1) as OkObjectResult;
+        var result2 = controller.ShortenUrl(model2) as OkObjectResult;
 
-        var okResult1 = result1 as OkObjectResult;
-        var okResult2 = result2 as OkObjectResult;
-
-        if (okResult1 == null || okResult2 == null)
+        if (result1 == null || result2 == null)
         {
             return;
         }
-        
-        var url1 = okResult1.Value as string;
-        var url2 = okResult2.Value as string;
 
-        _output.WriteLine($"Result1: {url1}");
-        _output.WriteLine($"Result2: {url2}");
-
-        Assert.NotEqual(url1, url2);
+        Assert.NotEqual(result1.Value as string, result2.Value as string);
     }
 }
