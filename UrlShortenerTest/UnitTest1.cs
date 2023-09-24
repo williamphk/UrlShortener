@@ -7,11 +7,11 @@ using Xunit.Abstractions;
 
 namespace UrlShortenerTest;
 
-public class CryptographyTests
+public class UrlShortenerTest
 {
     private readonly ITestOutputHelper _output;
 
-    public CryptographyTests(ITestOutputHelper output)
+    public UrlShortenerTest(ITestOutputHelper output)
     {
         _output = output;
     }
