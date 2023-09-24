@@ -107,10 +107,12 @@ Zero-downtime deployments to ensure service continuity.
 - Roll out the update using Kubernetes rolling updates.
 - Monitor the application and rollback if any issues are detected.
 
-# Real Production Service
-
 4. ### Monitoring & Logging
 Use cloud-native solutions for real-time monitoring and alerting. Prometheus for monitoring and Grafana for visualization. Fluentd and Elasticsearch for logging.
 - Set up Prometheus to scrape metrics from the application and Kubernetes nodes.
 - Set up Grafana dashboards to visualize these metrics.
 - Configure Fluentd to aggregate logs from application pods.
+
+# Real Production Service
+- The encryption method produce the same result (e.g. ysrAXm) for url with the same start (e.g. https//)
+- Even if it produce different results for different url, the decryption of the shortened url is not possible as it only contains the first 6 characters of the whole encrypted url (i.e. ysrAXmrmzPmkug2ZYBNQgie0lZHIaCAKCPnFCgstjVz6opvkcrw4sdUDO9dUC0tl vs ysrAXm)
