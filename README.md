@@ -107,6 +107,8 @@ Zero-downtime deployments to ensure service continuity.
 - Roll out the update using Kubernetes rolling updates.
 - Monitor the application and rollback if any issues are detected.
 
+# Real Production Service
+
 4. ### Monitoring & Logging
 Use cloud-native solutions for real-time monitoring and alerting. Prometheus for monitoring and Grafana for visualization. Fluentd and Elasticsearch for logging.
 - Set up Prometheus to scrape metrics from the application and Kubernetes nodes.
