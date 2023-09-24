@@ -114,7 +114,22 @@ Use cloud-native solutions for real-time monitoring and alerting. Prometheus for
 - Configure Fluentd to aggregate logs from application pods.
 
 # Real Production Service
-- The encryption method produce the same result (e.g. `ysrAXm`) for url with the same start (e.g. `https://`)
-- Even if it produce different results for different url, the decryption of the shortened url is not possible as it only contains the first 6 characters of the whole encrypted url (i.e. `ysrAXmrmzPmkug2ZYBNQgie0lZHIaCAKCPnFCgstjVz6opvkcrw4sdUDO9dUC0tl` vs `ysrAXm`), so that users cannot be redirect back to the original url.
-- Input the whole encryption string into the shortened url is not practical and the decryption will be time consuming, users will not toralate such long waiting time for redirection of a website.
-- A real world service would be implemented by storing a random string into a database and mapping that string to a specific url. In this way, no decryption is required and the response time will be much faster.
+While the current solution for URL shortening adheres to the basic requirements set forth by the task, there are several limitations that could hinder its utility in a real-world production environment. 
+
+## Challenges
+### Non-Unique Encryption for Similar URLs
+The current encryption method produces identical results for URLs that begin with the same sequence of characters. For example, URLs like https://www.example1.com and https://www.example2.com would yield the same shortened URL (i.e. `ysrAXm`), leading to a conflict.
+
+### Decryption Limitations
+The generated short URL contains only the first portion of the full encrypted string, making it impractical to decrypt it back to the original URL. Consequently, users would not be able to be redirected back to the original URL from the shortened one.
+ (i.e. `ysrAXmrmzPmkug2ZYBNQgie0lZHIaCAKCPnFCgstjVz6opvkcrw4sdUDO9dUC0tl` vs `ysrAXm`)
+
+### Performance Concerns
+Even if we were to include the complete encrypted string in the short URL (i.e. `https://www.example.co/ysrAXmrmzPmkug2ZYBNQgie0lZHIaCAKCPnFCgstjVz6opvkcrw4sdUDO9dUC0tl`), the decryption process could be time-consuming. This approach is not viable as it would result in unacceptable latencies, affecting the user experience adversely.
+
+## Recommendations
+### Database-Driven Mapping
+For a production-grade solution, it is advisable to adopt a database-driven approach for URL shortening. In this method, a unique random string would be generated for each URL and stored in a database, creating a mapping between the random string and the original URL. This eliminates the need for decryption and allows for faster response times when redirecting users to the original URLs.
+
+### Conflict Avoid
+By employing a database-mapping approach, we can ensure that each shortened URL generated is unique. When a new URL is submitted for shortening, the system would generate a random string and check the database to verify that this string has not been used before. If a conflict is detected (i.e., the generated string is already mapped to another URL), the system can regenerate a new random string and perform the verification process again. This ensures that each shortened URL will be unique and correctly mapped to its corresponding original URL, solving the issues related to encryption-based conflicts and non-unique short URLs.
