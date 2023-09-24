@@ -74,13 +74,13 @@ namespace UrlShortener.Controllers
         private static string GenerateRandomString(int stringLength)
         {
             // Allowed characters
-            string allowed = "ABCDEFGHIJKLMONOPQRSTUVWXYZabcdefghijklmonopqrstuvwxyz0123456789";
+            const string allowedCharacters = "ABCDEFGHIJKLMONOPQRSTUVWXYZabcdefghijklmonopqrstuvwxyz0123456789";
 
-            char[] randomChars = new char[stringLength];
+            var randomChars = new char[stringLength];
 
-            for (int i = 0; i < stringLength; i++)
+            for (var i = 0; i < stringLength; i++)
             {
-                randomChars[i] = allowed[RandomNumberGenerator.GetInt32(0, allowed.Length)];
+                randomChars[i] = allowedCharacters[RandomNumberGenerator.GetInt32(0, allowedCharacters.Length)];
             }
 
             return new string(randomChars);
