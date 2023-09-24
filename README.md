@@ -114,5 +114,5 @@ Use cloud-native solutions for real-time monitoring and alerting. Prometheus for
 - Configure Fluentd to aggregate logs from application pods.
 
 # Real Production Service
-- The encryption method produce the same result (e.g. ysrAXm) for url with the same start (e.g. https//)
-- Even if it produce different results for different url, the decryption of the shortened url is not possible as it only contains the first 6 characters of the whole encrypted url (i.e. ysrAXmrmzPmkug2ZYBNQgie0lZHIaCAKCPnFCgstjVz6opvkcrw4sdUDO9dUC0tl vs ysrAXm)
+- The encryption method produce the same result (e.g. `ysrAXm`) for url with the same start (e.g. `https://`)
+- Even if it produce different results for different url, the decryption of the shortened url is not possible as it only contains the first 6 characters of the whole encrypted url (i.e. `ysrAXmrmzPmkug2ZYBNQgie0lZHIaCAKCPnFCgstjVz6opvkcrw4sdUDO9dUC0tl` vs `ysrAXm`), so that users cannot be redirect back to the original url.
