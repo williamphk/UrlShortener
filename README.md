@@ -79,7 +79,36 @@ This document outlines the Continuous Integration and Continuous Deployment (CI/
 - Action: Monitor application performance and errors
 - Tool: Prometheus/Grafana (Choose one)
 
-## Deployment Plans
-- Initial Deployment: Dockerized application will be deployed in a Kubernetes cluster.
-- Scaling: Automated scaling using Kubernetes.
-- Updates: Zero-downtime deployments to ensure service continuity.
+# Deployment Plan Document
+This document outlines the deployment plan for our web application. It covers the initial deployment strategy, scaling considerations, and update protocols to ensure the efficient and reliable running of the service in production.
+
+## Environment
+- Platform: Kubernetes
+- Cloud Provider: AWS/Google Cloud/Azure
+
+## Deployment Plan
+1. ### Initial Deployment
+Dockerized application will be deployed in a Kubernetes cluster.
+- Pull the latest Docker image from the artifact storage.
+- Configure Kubernetes deployment YAML with the image and necessary environment variables.
+- Apply the Kubernetes deployment to roll out the application.
+- Validate the deployment by checking pod status and service endpoints.
+
+2. ### Scaling
+Automated scaling using Kubernetes Horizontal Pod Autoscaler
+- Monitor CPU and Memory usage metrics via Prometheus.
+- Set up a Horizontal Pod Autoscaler (HPA) to scale pods based on CPU or Memory.
+- Test scaling by simulating increased load and observing the addition or removal of pods.
+
+3. ### Updates
+Zero-downtime deployments to ensure service continuity.
+- Pull the latest Docker image for the update.
+- Update the Kubernetes deployment YAML with the new image.
+- Roll out the update using Kubernetes rolling updates.
+- Monitor the application and rollback if any issues are detected.
+
+4. ### Monitoring & Logging
+Use cloud-native solutions for real-time monitoring and alerting. Prometheus for monitoring and Grafana for visualization. Fluentd and Elasticsearch for logging.
+- Set up Prometheus to scrape metrics from the application and Kubernetes nodes.
+- Set up Grafana dashboards to visualize these metrics.
+- Configure Fluentd to aggregate logs from application pods.
