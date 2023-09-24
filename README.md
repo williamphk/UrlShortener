@@ -1,28 +1,83 @@
 # UrlShortener
 An implementation of a url shortener using .NET Core
 
-## CI/CD Pipeline Configuration
-### Introduction
+# CI/CD Pipeline Configuration
 This document outlines the Continuous Integration and Continuous Deployment (CI/CD) pipeline configuration and deployment plans for our URL Shortener service. The document aims to guide the development, testing, and deployment processes to ensure seamless integration and rapid delivery of features and bug fixes.
 
-### CI Pipeline
-1. Code Check-In: Developers will commit code to a version control system (e.g., Git).
-2. Automated Trigger: Any push to the main branch or a pull request will automatically trigger the CI pipeline.
-3. Static Code Analysis: Linting and static code checks to maintain code quality.
-4. Build: Compile the source code, generate executables, and create Docker images.
-5. Unit Testing: Run unit tests to validate the functionality of the new code.
-6. Integration Testing: Test the interactions between different pieces of code.
-7. Artifact Storage: Store build artifacts like Docker images for deployment.
-8. Notifications: Send notifications about the build and test status.
+## Tools Used
+- Source Control: Git
+- CI/CD Platform: Jenkins/CircleCI/GitHub Actions (Choose one)
+- Artifact Storage: AWS S3/Google Cloud Storage
+- Deployment Platform: Kubernetes
+- CI Pipeline Configuration
 
-### CD Pipeline
-1. Automated Trigger: Triggered automatically after successful CI or manually by developers.
-2. Deployment to Staging: Deploy the new build to a staging environment.
-3. Smoke Testing: Basic tests to ensure the staging environment is working.
-4. Approval: Manual approval to move to production.
-5. Deployment to Production: Deploy the approved build to the production environment.
-6. Monitoring and Logging: Continuous monitoring of the application's performance and errors.
-7. Rollback Strategy: If anything goes wrong, rollback to the previous stable version.
+## CI Pipeline
+1. ### Code Check-In
+- Trigger: Developer commits to main or feature branches
+- Action: Trigger the pipeline
+- Tool: Git
+
+2. ### Automated Trigger
+- Trigger: Upon code check-in or pull request
+- Action: Initialize the pipeline
+- Tool: Jenkins/CircleCI/GitHub Actions (Choose one)
+
+3. ### Static Code Analysis
+- Trigger: Pipeline Initialization
+- Action: Perform linting and static code checks
+- Tool: ESLint/SonarQube (Choose one)
+
+4. ### Build
+- Trigger: Successful code analysis
+- Action: Compile source code and create Docker images
+- Tool: Docker, Maven/Gradle (for compilation)
+
+5. ### Unit Testing
+- Trigger: Successful build
+- Action: Execute unit tests
+- Tool: JUnit/xUnit (Choose one)
+
+6. ### Integration Testing
+- Trigger: Successful unit tests
+- Action: Perform integration tests
+- Tool: JUnit/TestNG with Selenium (Choose based on your tech stack)
+
+7. ### Artifact Storage
+- Trigger: Successful build and tests
+- Action: Store build artifacts in a repository
+- Tool: AWS S3/Google Cloud Storage (Choose one)
+
+8. ### Notifications
+- Trigger: Any pipeline stage completion
+- Action: Notify team of status
+- Tool: Email/Slack (Choose one)
+
+## CD Pipeline
+
+1. ### Pull Latest Artifact
+- Trigger: Manually or after successful CI pipeline
+- Action: Fetch the latest build artifact from storage
+- Tool: AWS S3/Google Cloud Storage (Choose one)
+
+2. ### Deployment to Staging
+- Trigger: Successful fetch of the latest artifact
+- Action: Deploy to staging environment
+- Tool: Kubernetes
+
+3. ### Manual Verification
+- Trigger: Successful deployment to staging
+- Action: QA checks
+- Tool: N/A
+
+4. ### Deployment to Production
+- Trigger: Successful QA checks
+- Action: Deploy to production environment
+- Tool: Kubernetes
+
+5. ### Monitoring and Logging
+- Trigger: Post-deployment
+- Action: Monitor application performance and errors
+- Tool: Prometheus/Grafana (Choose one)
 
 ## Deployment Plans
 - Initial Deployment: Dockerized application will be deployed in a Kubernetes cluster.
