@@ -116,3 +116,5 @@ Use cloud-native solutions for real-time monitoring and alerting. Prometheus for
 # Real Production Service
 - The encryption method produce the same result (e.g. `ysrAXm`) for url with the same start (e.g. `https://`)
 - Even if it produce different results for different url, the decryption of the shortened url is not possible as it only contains the first 6 characters of the whole encrypted url (i.e. `ysrAXmrmzPmkug2ZYBNQgie0lZHIaCAKCPnFCgstjVz6opvkcrw4sdUDO9dUC0tl` vs `ysrAXm`), so that users cannot be redirect back to the original url.
+- Input the whole encryption string into the shortened url is not practical and the decryption will be time consuming, users will not toralate such long waiting time for redirection of a website.
+- A real world service would be implemented by storing a random string into a database and mapping that string to a specific url. In this way, no decryption is required and the response time will be much faster.
