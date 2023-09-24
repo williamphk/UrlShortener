@@ -114,7 +114,7 @@ Use cloud-native solutions for real-time monitoring and alerting. Prometheus for
 - Configure Fluentd to aggregate logs from application pods.
 
 # Real Production Service
-While the current solution for URL shortening adheres to the basic requirements set forth by the task, there are several limitations that could hinder its utility in a real-world production environment. 
+While the current solution for URL shortening adheres to the basic requirements set by the task, there are several limitations that could hinder its utility in a real-world production environment. 
 
 ## Challenges
 ### Non-Unique Encryption for Similar URLs
