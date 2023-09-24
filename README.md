@@ -1,5 +1,5 @@
 # UrlShortener
-An implementation of a url shortener using .NET Core
+An implementation of a url shortener using .NET Core.
 
 # CI/CD Pipeline Configuration
 This document outlines the Continuous Integration and Continuous Deployment (CI/CD) pipeline configuration and deployment plans for our URL Shortener service. The document aims to guide the development, testing, and deployment processes to ensure seamless integration and rapid delivery of features and bug fixes.
